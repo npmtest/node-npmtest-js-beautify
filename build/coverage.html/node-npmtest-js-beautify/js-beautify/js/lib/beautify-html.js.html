@@ -1,0 +1,3608 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-js-beautify/js-beautify/js/lib/beautify-html.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-js-beautify">npmtest-js-beautify (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-js-beautify/js-beautify/js/lib/beautify-html.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">2.45% <small>(14 / 571)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0.6% <small>(3 / 497)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">2.7% <small>(1 / 37)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">2.45% <small>(14 / 571)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-js-beautify/js-beautify/js/lib/</a> &#187; beautify-html.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005
+1006
+1007
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+1036
+1037
+1038
+1039
+1040
+1041
+1042
+1043
+1044
+1045
+1046
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067
+1068
+1069
+1070
+1071
+1072
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1086
+1087
+1088
+1089
+1090
+1091
+1092
+1093
+1094
+1095
+1096
+1097
+1098
+1099
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1108
+1109
+1110
+1111
+1112
+1113
+1114
+1115
+1116
+1117
+1118
+1119
+1120
+1121
+1122
+1123
+1124
+1125
+1126
+1127
+1128
+1129</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*jshint curly:true, eqeqeq:true, laxbreak:true, noempty:false */
+/*
+&nbsp;
+  The MIT License (MIT)
+&nbsp;
+  Copyright (c) 2007-2017 Einar Lielmanis, Liam Newman, and contributors.
+&nbsp;
+  Permission is hereby granted, free of charge, to any person
+  obtaining a copy of this software and associated documentation files
+  (the "Software"), to deal in the Software without restriction,
+  including without limitation the rights to use, copy, modify, merge,
+  publish, distribute, sublicense, and/or sell copies of the Software,
+  and to permit persons to whom the Software is furnished to do so,
+  subject to the following conditions:
+&nbsp;
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+&nbsp;
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+&nbsp;
+&nbsp;
+ Style HTML
+---------------
+&nbsp;
+  Written by Nochum Sossonko, (nsossonko@hotmail.com)
+&nbsp;
+  Based on code initially developed by: Einar Lielmanis, &lt;einar@jsbeautifier.org&gt;
+    http://jsbeautifier.org/
+&nbsp;
+  Usage:
+    style_html(html_source);
+&nbsp;
+    style_html(html_source, options);
+&nbsp;
+  The options are:
+    indent_inner_html (default false)  — indent &lt;head&gt; and &lt;body&gt; sections,
+    indent_size (default 4)          — indentation size,
+    indent_char (default space)      — character to indent with,
+    wrap_line_length (default 250)            -  maximum amount of characters per line (0 = disable)
+    brace_style (default "collapse") - "collapse" | "expand" | "end-expand" | "none"
+            put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line, or attempt to keep them where they are.
+    unformatted (defaults to inline tags) - list of tags, that shouldn't be reformatted
+    content_unformatted (defaults to pre tag) - list of tags, that its content shouldn't be reformatted
+    indent_scripts (default normal)  - "keep"|"separate"|"normal"
+    preserve_newlines (default true) - whether existing line breaks before elements should be preserved
+                                        Only works before elements, not inside tags or for text.
+    max_preserve_newlines (default unlimited) - maximum number of line breaks to be preserved in one chunk
+    indent_handlebars (default false) - format and indent {{#foo}} and {{/foo}}
+    end_with_newline (false)          - end with a newline
+    extra_liners (default [head,body,/html]) -List of tags that should have an extra newline before them.
+&nbsp;
+    e.g.
+&nbsp;
+    style_html(html_source, {
+      'indent_inner_html': false,
+      'indent_size': 2,
+      'indent_char': ' ',
+      'wrap_line_length': 78,
+      'brace_style': 'expand',
+      'preserve_newlines': true,
+      'max_preserve_newlines': 5,
+      'indent_handlebars': false,
+      'extra_liners': ['/html']
+    });
+*/
+&nbsp;
+(function() {
+&nbsp;
+    // function trim(s) {
+    //     return s.replace(/^\s+|\s+$/g, '');
+    // }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function ltrim(s) {</span>
+<span class="cstat-no" title="statement not covered" >        return s.replace(/^\s+/g, '');</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function rtrim(s) {</span>
+<span class="cstat-no" title="statement not covered" >        return s.replace(/\s+$/g, '');</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function mergeOpts(allOptions, targetType) {</span>
+<span class="cstat-no" title="statement not covered" >        var finalOpts = {};</span>
+<span class="cstat-no" title="statement not covered" >        var name;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (name in allOptions) {</span>
+<span class="cstat-no" title="statement not covered" >            if (name !== targetType) {</span>
+<span class="cstat-no" title="statement not covered" >                finalOpts[name] = allOptions[name];</span>
+            }
+        }
+&nbsp;
+        //merge in the per type settings for the targetType
+<span class="cstat-no" title="statement not covered" >        if (targetType in allOptions) {</span>
+<span class="cstat-no" title="statement not covered" >            for (name in allOptions[targetType]) {</span>
+<span class="cstat-no" title="statement not covered" >                finalOpts[name] = allOptions[targetType][name];</span>
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return finalOpts;</span>
+    }
+&nbsp;
+    var lineBreak = /\r\n|[\n\r\u2028\u2029]/;
+    var allLineBreaks = new RegExp(lineBreak.source, 'g');
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function style_html(html_source, options, js_beautify, css_beautify) {</span>
+        //Wrapper function to invoke all the necessary constructors and deal with the output.
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var multi_parser,</span>
+            indent_inner_html,
+            indent_body_inner_html,
+            indent_head_inner_html,
+            indent_size,
+            indent_character,
+            wrap_line_length,
+            brace_style,
+            unformatted,
+            content_unformatted,
+            preserve_newlines,
+            max_preserve_newlines,
+            indent_handlebars,
+            wrap_attributes,
+            wrap_attributes_indent_size,
+            is_wrap_attributes_force,
+            is_wrap_attributes_force_expand_multiline,
+            is_wrap_attributes_force_aligned,
+            end_with_newline,
+            extra_liners,
+            eol;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        options = options || {};</span>
+&nbsp;
+        // Allow the setting of language/file-type specific options
+        // with inheritance of overall settings
+<span class="cstat-no" title="statement not covered" >        options = mergeOpts(options, 'html');</span>
+&nbsp;
+        // backwards compatibility to 1.3.4
+<span class="cstat-no" title="statement not covered" >        if ((options.wrap_line_length === undefined || parseInt(options.wrap_line_length, 10) === 0) &amp;&amp;</span>
+            (options.max_char !== undefined &amp;&amp; parseInt(options.max_char, 10) !== 0)) {
+<span class="cstat-no" title="statement not covered" >            options.wrap_line_length = options.max_char;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        indent_inner_html = (options.indent_inner_html === undefined) ? false : options.indent_inner_html;</span>
+<span class="cstat-no" title="statement not covered" >        indent_body_inner_html = (options.indent_body_inner_html === undefined) ? true : options.indent_body_inner_html;</span>
+<span class="cstat-no" title="statement not covered" >        indent_head_inner_html = (options.indent_head_inner_html === undefined) ? true : options.indent_head_inner_html;</span>
+<span class="cstat-no" title="statement not covered" >        indent_size = (options.indent_size === undefined) ? 4 : parseInt(options.indent_size, 10);</span>
+<span class="cstat-no" title="statement not covered" >        indent_character = (options.indent_char === undefined) ? ' ' : options.indent_char;</span>
+<span class="cstat-no" title="statement not covered" >        brace_style = (options.brace_style === undefined) ? 'collapse' : options.brace_style;</span>
+<span class="cstat-no" title="statement not covered" >        wrap_line_length = parseInt(options.wrap_line_length, 10) === 0 ? 32786 : parseInt(options.wrap_line_length || 250, 10);</span>
+<span class="cstat-no" title="statement not covered" >        unformatted = options.unformatted || [</span>
+            // https://www.w3.org/TR/html5/dom.html#phrasing-content
+            'a', 'abbr', 'area', 'audio', 'b', 'bdi', 'bdo', 'br', 'button', 'canvas', 'cite',
+            'code', 'data', 'datalist', 'del', 'dfn', 'em', 'embed', 'i', 'iframe', 'img',
+            'input', 'ins', 'kbd', 'keygen', 'label', 'map', 'mark', 'math', 'meter', 'noscript',
+            'object', 'output', 'progress', 'q', 'ruby', 's', 'samp', /* 'script', */ 'select', 'small',
+            'span', 'strong', 'sub', 'sup', 'svg', 'template', 'textarea', 'time', 'u', 'var',
+            'video', 'wbr', 'text',
+            // prexisting - not sure of full effect of removing, leaving in
+            'acronym', 'address', 'big', 'dt', 'ins', 'strike', 'tt',
+        ];
+<span class="cstat-no" title="statement not covered" >        content_unformatted = options.content_unformatted || [</span>
+            'pre',
+        ];
+<span class="cstat-no" title="statement not covered" >        preserve_newlines = (options.preserve_newlines === undefined) ? true : options.preserve_newlines;</span>
+<span class="cstat-no" title="statement not covered" >        max_preserve_newlines = preserve_newlines ?</span>
+            (isNaN(parseInt(options.max_preserve_newlines, 10)) ? 32786 : parseInt(options.max_preserve_newlines, 10)) :
+            0;
+<span class="cstat-no" title="statement not covered" >        indent_handlebars = (options.indent_handlebars === undefined) ? false : options.indent_handlebars;</span>
+<span class="cstat-no" title="statement not covered" >        wrap_attributes = (options.wrap_attributes === undefined) ? 'auto' : options.wrap_attributes;</span>
+<span class="cstat-no" title="statement not covered" >        wrap_attributes_indent_size = (isNaN(parseInt(options.wrap_attributes_indent_size, 10))) ? indent_size : parseInt(options.wrap_attributes_indent_size, 10);</span>
+<span class="cstat-no" title="statement not covered" >        is_wrap_attributes_force = wrap_attributes.substr(0, 'force'.length) === 'force';</span>
+<span class="cstat-no" title="statement not covered" >        is_wrap_attributes_force_expand_multiline = (wrap_attributes === 'force-expand-multiline');</span>
+<span class="cstat-no" title="statement not covered" >        is_wrap_attributes_force_aligned = (wrap_attributes === 'force-aligned');</span>
+<span class="cstat-no" title="statement not covered" >        end_with_newline = (options.end_with_newline === undefined) ? false : options.end_with_newline;</span>
+<span class="cstat-no" title="statement not covered" >        extra_liners = (typeof options.extra_liners === 'object') &amp;&amp; options.extra_liners ?</span>
+            options.extra_liners.concat() : (typeof options.extra_liners === 'string') ?
+            options.extra_liners.split(',') : 'head,body,/html'.split(',');
+<span class="cstat-no" title="statement not covered" >        eol = options.eol ? options.eol : 'auto';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (options.indent_with_tabs) {</span>
+<span class="cstat-no" title="statement not covered" >            indent_character = '\t';</span>
+<span class="cstat-no" title="statement not covered" >            indent_size = 1;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (eol === 'auto') {</span>
+<span class="cstat-no" title="statement not covered" >            eol = '\n';</span>
+<span class="cstat-no" title="statement not covered" >            if (html_source &amp;&amp; lineBreak.test(html_source || '')) {</span>
+<span class="cstat-no" title="statement not covered" >                eol = html_source.match(lineBreak)[0];</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        eol = eol.replace(/\\r/, '\r').replace(/\\n/, '\n');</span>
+&nbsp;
+        // HACK: newline parsing inconsistent. This brute force normalizes the input.
+<span class="cstat-no" title="statement not covered" >        html_source = html_source.replace(allLineBreaks, '\n');</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function Parser() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.pos = 0; </span>//Parser position
+<span class="cstat-no" title="statement not covered" >            this.token = '';</span>
+<span class="cstat-no" title="statement not covered" >            this.current_mode = 'CONTENT'; </span>//reflects the current Parser mode: TAG/CONTENT
+<span class="cstat-no" title="statement not covered" >            this.tags = { //An object to hold tags, their position, and their parent-tags, initiated with default values</span>
+                parent: 'parent1',
+                parentcount: 1,
+                parent1: ''
+            };
+<span class="cstat-no" title="statement not covered" >            this.tag_type = '';</span>
+<span class="cstat-no" title="statement not covered" >            this.token_text = this.last_token = this.last_text = this.token_type = '';</span>
+<span class="cstat-no" title="statement not covered" >            this.newlines = 0;</span>
+<span class="cstat-no" title="statement not covered" >            this.indent_content = indent_inner_html;</span>
+<span class="cstat-no" title="statement not covered" >            this.indent_body_inner_html = indent_body_inner_html;</span>
+<span class="cstat-no" title="statement not covered" >            this.indent_head_inner_html = indent_head_inner_html;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.Utils = { //Uilities made available to the various functions</span>
+                whitespace: "\n\r\t ".split(''),
+&nbsp;
+                single_token: [
+                    // HTLM void elements - aka self-closing tags - aka singletons
+                    // https://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
+                    'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen',
+                    'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr',
+                    // NOTE: Optional tags - are not understood.
+                    // https://www.w3.org/TR/html5/syntax.html#optional-tags
+                    // The rules for optional tags are too complex for a simple list
+                    // Also, the content of these tags should still be indented in many cases.
+                    // 'li' is a good exmple.
+&nbsp;
+                    // Doctype and xml elements
+                    '!doctype', '?xml',
+                    // ?php tag
+                    '?php',
+                    // other tags that were in this list, keeping just in case
+                    'basefont', 'isindex'
+                ],
+                extra_liners: extra_liners, //for tags that need a line of whitespace before them
+                in_array: <span class="fstat-no" title="function not covered" >function(what, arr) {</span>
+<span class="cstat-no" title="statement not covered" >                    for (var i = 0; i &lt; arr.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (what === arr[i]) {</span>
+<span class="cstat-no" title="statement not covered" >                            return true;</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+            };
+&nbsp;
+            // Return true if the given text is composed entirely of whitespace.
+<span class="cstat-no" title="statement not covered" >            this.is_whitespace = <span class="fstat-no" title="function not covered" >function(text) {</span></span>
+<span class="cstat-no" title="statement not covered" >                for (var n = 0; n &lt; text.length; n++) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (!this.Utils.in_array(text.charAt(n), this.Utils.whitespace)) {</span>
+<span class="cstat-no" title="statement not covered" >                        return false;</span>
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.traverse_whitespace = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                var input_char = '';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                input_char = this.input.charAt(this.pos);</span>
+<span class="cstat-no" title="statement not covered" >                if (this.Utils.in_array(input_char, this.Utils.whitespace)) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.newlines = 0;</span>
+<span class="cstat-no" title="statement not covered" >                    while (this.Utils.in_array(input_char, this.Utils.whitespace)) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (preserve_newlines &amp;&amp; input_char === '\n' &amp;&amp; this.newlines &lt;= max_preserve_newlines) {</span>
+<span class="cstat-no" title="statement not covered" >                            this.newlines += 1;</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        this.pos++;</span>
+<span class="cstat-no" title="statement not covered" >                        input_char = this.input.charAt(this.pos);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    return true;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            };
+&nbsp;
+            // Append a space to the given content (string array) or, if we are
+            // at the wrap_line_length, append a newline/indentation.
+            // return true if a newline was added, false if a space was added
+<span class="cstat-no" title="statement not covered" >            this.space_or_wrap = <span class="fstat-no" title="function not covered" >function(content) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (this.line_char_count &gt;= this.wrap_line_length) { //insert a line when the wrap_line_length is reached</span>
+<span class="cstat-no" title="statement not covered" >                    this.print_newline(false, content);</span>
+<span class="cstat-no" title="statement not covered" >                    this.print_indentation(content);</span>
+<span class="cstat-no" title="statement not covered" >                    return true;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    this.line_char_count++;</span>
+<span class="cstat-no" title="statement not covered" >                    content.push(' ');</span>
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.get_content = <span class="fstat-no" title="function not covered" >function() {</span> //function to capture regular content between tags</span>
+<span class="cstat-no" title="statement not covered" >                var input_char = '',</span>
+                    content = [],
+                    handlebarsStarted = 0;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                while (this.input.charAt(this.pos) !== '&lt;' || handlebarsStarted === 2) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (this.pos &gt;= this.input.length) {</span>
+<span class="cstat-no" title="statement not covered" >                        return content.length ? content.join('') : ['', 'TK_EOF'];</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (handlebarsStarted &lt; 2 &amp;&amp; this.traverse_whitespace()) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.space_or_wrap(content);</span>
+<span class="cstat-no" title="statement not covered" >                        continue;</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    input_char = this.input.charAt(this.pos);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (indent_handlebars) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (input_char === '{') {</span>
+<span class="cstat-no" title="statement not covered" >                            handlebarsStarted += 1;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (handlebarsStarted &lt; 2) {</span>
+<span class="cstat-no" title="statement not covered" >                            handlebarsStarted = 0;</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (input_char === '}' &amp;&amp; handlebarsStarted &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            if (handlebarsStarted-- === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                                break;</span>
+                            }
+                        }
+                        // Handlebars parsing is complicated.
+                        // {{#foo}} and {{/foo}} are formatted tags.
+                        // {{something}} should get treated as content, except:
+                        // {{else}} specifically behaves like {{#if}} and {{/if}}
+<span class="cstat-no" title="statement not covered" >                        var peek3 = this.input.substr(this.pos, 3);</span>
+<span class="cstat-no" title="statement not covered" >                        if (peek3 === '{{#' || peek3 === '{{/') {</span>
+                            // These are tags and not content.
+<span class="cstat-no" title="statement not covered" >                            break;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (peek3 === '{{!') {</span>
+<span class="cstat-no" title="statement not covered" >                            return [this.get_tag(), 'TK_TAG_HANDLEBARS_COMMENT'];</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (this.input.substr(this.pos, 2) === '{{') {</span>
+<span class="cstat-no" title="statement not covered" >                            if (this.get_tag(true) === '{{else}}') {</span>
+<span class="cstat-no" title="statement not covered" >                                break;</span>
+                            }
+                        }
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.pos++;</span>
+<span class="cstat-no" title="statement not covered" >                    this.line_char_count++;</span>
+<span class="cstat-no" title="statement not covered" >                    content.push(input_char); </span>//letter at-a-time (or string) inserted to an array
+                }
+<span class="cstat-no" title="statement not covered" >                return content.length ? content.join('') : '';</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.get_contents_to = <span class="fstat-no" title="function not covered" >function(name) {</span> //get the full content of a script or style to pass to js_beautify</span>
+<span class="cstat-no" title="statement not covered" >                if (this.pos === this.input.length) {</span>
+<span class="cstat-no" title="statement not covered" >                    return ['', 'TK_EOF'];</span>
+                }
+<span class="cstat-no" title="statement not covered" >                var content = '';</span>
+<span class="cstat-no" title="statement not covered" >                var reg_match = new RegExp('&lt;/' + name + '\\s*&gt;', 'igm');</span>
+<span class="cstat-no" title="statement not covered" >                reg_match.lastIndex = this.pos;</span>
+<span class="cstat-no" title="statement not covered" >                var reg_array = reg_match.exec(this.input);</span>
+<span class="cstat-no" title="statement not covered" >                var end_script = reg_array ? reg_array.index : this.input.length; </span>//absolute end of script
+<span class="cstat-no" title="statement not covered" >                if (this.pos &lt; end_script) { //get everything in between the script tags</span>
+<span class="cstat-no" title="statement not covered" >                    content = this.input.substring(this.pos, end_script);</span>
+<span class="cstat-no" title="statement not covered" >                    this.pos = end_script;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return content;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.record_tag = <span class="fstat-no" title="function not covered" >function(tag) {</span> //function to record a tag and its parent in this.tags Object</span>
+<span class="cstat-no" title="statement not covered" >                if (this.tags[tag + 'count']) { //check for the existence of this tag type</span>
+<span class="cstat-no" title="statement not covered" >                    this.tags[tag + 'count']++;</span>
+<span class="cstat-no" title="statement not covered" >                    this.tags[tag + this.tags[tag + 'count']] = this.indent_level; </span>//and record the present indent level
+                } else { //otherwise initialize this tag type
+<span class="cstat-no" title="statement not covered" >                    this.tags[tag + 'count'] = 1;</span>
+<span class="cstat-no" title="statement not covered" >                    this.tags[tag + this.tags[tag + 'count']] = this.indent_level; </span>//and record the present indent level
+                }
+<span class="cstat-no" title="statement not covered" >                this.tags[tag + this.tags[tag + 'count'] + 'parent'] = this.tags.parent; </span>//set the parent (i.e. in the case of a div this.tags.div1parent)
+<span class="cstat-no" title="statement not covered" >                this.tags.parent = tag + this.tags[tag + 'count']; </span>//and make this the current parent (i.e. in the case of a div 'div1')
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.retrieve_tag = <span class="fstat-no" title="function not covered" >function(tag) {</span> //function to retrieve the opening tag to the corresponding closer</span>
+<span class="cstat-no" title="statement not covered" >                if (this.tags[tag + 'count']) { //if the openener is not in the Object we ignore it</span>
+<span class="cstat-no" title="statement not covered" >                    var temp_parent = this.tags.parent; </span>//check to see if it's a closable tag.
+<span class="cstat-no" title="statement not covered" >                    while (temp_parent) { //till we reach '' (the initial value);</span>
+<span class="cstat-no" title="statement not covered" >                        if (tag + this.tags[tag + 'count'] === temp_parent) { //if this is it use it</span>
+<span class="cstat-no" title="statement not covered" >                            break;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        temp_parent = this.tags[temp_parent + 'parent']; </span>//otherwise keep on climbing up the DOM Tree
+                    }
+<span class="cstat-no" title="statement not covered" >                    if (temp_parent) { //if we caught something</span>
+<span class="cstat-no" title="statement not covered" >                        this.indent_level = this.tags[tag + this.tags[tag + 'count']]; </span>//set the indent_level accordingly
+<span class="cstat-no" title="statement not covered" >                        this.tags.parent = this.tags[temp_parent + 'parent']; </span>//and set the current parent
+                    }
+<span class="cstat-no" title="statement not covered" >                    delete this.tags[tag + this.tags[tag + 'count'] + 'parent']; </span>//delete the closed tags parent reference...
+<span class="cstat-no" title="statement not covered" >                    delete this.tags[tag + this.tags[tag + 'count']]; </span>//...and the tag itself
+<span class="cstat-no" title="statement not covered" >                    if (this.tags[tag + 'count'] === 1) {</span>
+<span class="cstat-no" title="statement not covered" >                        delete this.tags[tag + 'count'];</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        this.tags[tag + 'count']--;</span>
+                    }
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.indent_to_tag = <span class="fstat-no" title="function not covered" >function(tag) {</span></span>
+                // Match the indentation level to the last use of this tag, but don't remove it.
+<span class="cstat-no" title="statement not covered" >                if (!this.tags[tag + 'count']) {</span>
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                var temp_parent = this.tags.parent;</span>
+<span class="cstat-no" title="statement not covered" >                while (temp_parent) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (tag + this.tags[tag + 'count'] === temp_parent) {</span>
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    temp_parent = this.tags[temp_parent + 'parent'];</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (temp_parent) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.indent_level = this.tags[tag + this.tags[tag + 'count']];</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.get_tag = <span class="fstat-no" title="function not covered" >function(peek) {</span> //function to get a full tag and parse its type</span>
+<span class="cstat-no" title="statement not covered" >                var input_char = '',</span>
+                    content = [],
+                    comment = '',
+                    space = false,
+                    first_attr = true,
+                    has_wrapped_attrs = false,
+                    tag_start, tag_end,
+                    tag_start_char,
+                    orig_pos = this.pos,
+                    orig_line_char_count = this.line_char_count,
+                    is_tag_closed = false,
+                    tail;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                peek = peek !== undefined ? peek : false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                do {</span>
+<span class="cstat-no" title="statement not covered" >                    if (this.pos &gt;= this.input.length) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (peek) {</span>
+<span class="cstat-no" title="statement not covered" >                            this.pos = orig_pos;</span>
+<span class="cstat-no" title="statement not covered" >                            this.line_char_count = orig_line_char_count;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        return content.length ? content.join('') : ['', 'TK_EOF'];</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    input_char = this.input.charAt(this.pos);</span>
+<span class="cstat-no" title="statement not covered" >                    this.pos++;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (this.Utils.in_array(input_char, this.Utils.whitespace)) { //don't want to insert unnecessary space</span>
+<span class="cstat-no" title="statement not covered" >                        space = true;</span>
+<span class="cstat-no" title="statement not covered" >                        continue;</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (input_char === "'" || input_char === '"') {</span>
+<span class="cstat-no" title="statement not covered" >                        input_char += this.get_unformatted(input_char);</span>
+<span class="cstat-no" title="statement not covered" >                        space = true;</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (input_char === '=') { //no space before =</span>
+<span class="cstat-no" title="statement not covered" >                        space = false;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    tail = this.input.substr(this.pos - 1);</span>
+<span class="cstat-no" title="statement not covered" >                    if (is_wrap_attributes_force_expand_multiline &amp;&amp; has_wrapped_attrs &amp;&amp; !is_tag_closed &amp;&amp; (input_char === '&gt;' || input_char === '/')) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (tail.match(/^\/?\s*&gt;/)) {</span>
+<span class="cstat-no" title="statement not covered" >                            space = false;</span>
+<span class="cstat-no" title="statement not covered" >                            is_tag_closed = true;</span>
+<span class="cstat-no" title="statement not covered" >                            this.print_newline(false, content);</span>
+<span class="cstat-no" title="statement not covered" >                            this.print_indentation(content);</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    if (content.length &amp;&amp; content[content.length - 1] !== '=' &amp;&amp; input_char !== '&gt;' &amp;&amp; space) {</span>
+                        //no space after = or before &gt;
+<span class="cstat-no" title="statement not covered" >                        var wrapped = this.space_or_wrap(content);</span>
+<span class="cstat-no" title="statement not covered" >                        var indentAttrs = wrapped &amp;&amp; input_char !== '/' &amp;&amp; !is_wrap_attributes_force;</span>
+<span class="cstat-no" title="statement not covered" >                        space = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (is_wrap_attributes_force &amp;&amp; input_char !== '/') {</span>
+<span class="cstat-no" title="statement not covered" >                            var force_first_attr_wrap = false;</span>
+<span class="cstat-no" title="statement not covered" >                            if (is_wrap_attributes_force_expand_multiline &amp;&amp; first_attr) {</span>
+<span class="cstat-no" title="statement not covered" >                                var is_only_attribute = tail.match(/^\S*(="([^"]|\\")*")?\s*\/?\s*&gt;/) !== null;</span>
+<span class="cstat-no" title="statement not covered" >                                force_first_attr_wrap = !is_only_attribute;</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            if (!first_attr || force_first_attr_wrap) {</span>
+<span class="cstat-no" title="statement not covered" >                                this.print_newline(false, content);</span>
+<span class="cstat-no" title="statement not covered" >                                this.print_indentation(content);</span>
+<span class="cstat-no" title="statement not covered" >                                indentAttrs = true;</span>
+                            }
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (indentAttrs) {</span>
+<span class="cstat-no" title="statement not covered" >                            has_wrapped_attrs = true;</span>
+&nbsp;
+                            //indent attributes an auto, forced, or forced-align line-wrap
+<span class="cstat-no" title="statement not covered" >                            var alignment_size = wrap_attributes_indent_size;</span>
+<span class="cstat-no" title="statement not covered" >                            if (is_wrap_attributes_force_aligned) {</span>
+<span class="cstat-no" title="statement not covered" >                                alignment_size = content.indexOf(' ') + 1;</span>
+                            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            for (var count = 0; count &lt; alignment_size; count++) {</span>
+                                // only ever further indent with spaces since we're trying to align characters
+<span class="cstat-no" title="statement not covered" >                                content.push(' ');</span>
+                            }
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (first_attr) {</span>
+<span class="cstat-no" title="statement not covered" >                            for (var i = 0; i &lt; content.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                                if (content[i] === ' ') {</span>
+<span class="cstat-no" title="statement not covered" >                                    first_attr = false;</span>
+<span class="cstat-no" title="statement not covered" >                                    break;</span>
+                                }
+                            }
+                        }
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (indent_handlebars &amp;&amp; tag_start_char === '&lt;') {</span>
+                        // When inside an angle-bracket tag, put spaces around
+                        // handlebars not inside of strings.
+<span class="cstat-no" title="statement not covered" >                        if ((input_char + this.input.charAt(this.pos)) === '{{') {</span>
+<span class="cstat-no" title="statement not covered" >                            input_char += this.get_unformatted('}}');</span>
+<span class="cstat-no" title="statement not covered" >                            if (content.length &amp;&amp; content[content.length - 1] !== ' ' &amp;&amp; content[content.length - 1] !== '&lt;') {</span>
+<span class="cstat-no" title="statement not covered" >                                input_char = ' ' + input_char;</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            space = true;</span>
+                        }
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (input_char === '&lt;' &amp;&amp; !tag_start_char) {</span>
+<span class="cstat-no" title="statement not covered" >                        tag_start = this.pos - 1;</span>
+<span class="cstat-no" title="statement not covered" >                        tag_start_char = '&lt;';</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (indent_handlebars &amp;&amp; !tag_start_char) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (content.length &gt;= 2 &amp;&amp; content[content.length - 1] === '{' &amp;&amp; content[content.length - 2] === '{') {</span>
+<span class="cstat-no" title="statement not covered" >                            if (input_char === '#' || input_char === '/' || input_char === '!') {</span>
+<span class="cstat-no" title="statement not covered" >                                tag_start = this.pos - 3;</span>
+                            } else {
+<span class="cstat-no" title="statement not covered" >                                tag_start = this.pos - 2;</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            tag_start_char = '{';</span>
+                        }
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.line_char_count++;</span>
+<span class="cstat-no" title="statement not covered" >                    content.push(input_char); </span>//inserts character at-a-time (or string)
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (content[1] &amp;&amp; (content[1] === '!' || content[1] === '?' || content[1] === '%')) { //if we're in a comment, do something special</span>
+                        // We treat all comments as literals, even more than preformatted tags
+                        // we just look for the appropriate close tag
+<span class="cstat-no" title="statement not covered" >                        content = [this.get_comment(tag_start)];</span>
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (indent_handlebars &amp;&amp; content[1] &amp;&amp; content[1] === '{' &amp;&amp; content[2] &amp;&amp; content[2] === '!') { //if we're in a comment, do something special</span>
+                        // We treat all comments as literals, even more than preformatted tags
+                        // we just look for the appropriate close tag
+<span class="cstat-no" title="statement not covered" >                        content = [this.get_comment(tag_start)];</span>
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (indent_handlebars &amp;&amp; tag_start_char === '{' &amp;&amp; content.length &gt; 2 &amp;&amp; content[content.length - 2] === '}' &amp;&amp; content[content.length - 1] === '}') {</span>
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    }
+                } while (input_char !== '&gt;');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var tag_complete = content.join('');</span>
+<span class="cstat-no" title="statement not covered" >                var tag_index;</span>
+<span class="cstat-no" title="statement not covered" >                var tag_offset;</span>
+&nbsp;
+                // must check for space first otherwise the tag could have the first attribute included, and
+                // then not un-indent correctly
+<span class="cstat-no" title="statement not covered" >                if (tag_complete.indexOf(' ') !== -1) { //if there's whitespace, thats where the tag name ends</span>
+<span class="cstat-no" title="statement not covered" >                    tag_index = tag_complete.indexOf(' ');</span>
+                } else <span class="cstat-no" title="statement not covered" >if (tag_complete.indexOf('\n') !== -1) { //if there's a line break, thats where the tag name ends</span>
+<span class="cstat-no" title="statement not covered" >                    tag_index = tag_complete.indexOf('\n');</span>
+                } else <span class="cstat-no" title="statement not covered" >if (tag_complete.charAt(0) === '{') {</span>
+<span class="cstat-no" title="statement not covered" >                    tag_index = tag_complete.indexOf('}');</span>
+                } else { //otherwise go with the tag ending
+<span class="cstat-no" title="statement not covered" >                    tag_index = tag_complete.indexOf('&gt;');</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (tag_complete.charAt(0) === '&lt;' || !indent_handlebars) {</span>
+<span class="cstat-no" title="statement not covered" >                    tag_offset = 1;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    tag_offset = tag_complete.charAt(2) === '#' ? 3 : 2;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                var tag_check = tag_complete.substring(tag_offset, tag_index).toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >                if (tag_complete.charAt(tag_complete.length - 2) === '/' ||</span>
+                    this.Utils.in_array(tag_check, this.Utils.single_token)) { //if this tag name is a single tag type (either in the list or has a closing /)
+<span class="cstat-no" title="statement not covered" >                    if (!peek) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.tag_type = 'SINGLE';</span>
+                    }
+                } else <span class="cstat-no" title="statement not covered" >if (indent_handlebars &amp;&amp; tag_complete.charAt(0) === '{' &amp;&amp; tag_check === 'else') {</span>
+<span class="cstat-no" title="statement not covered" >                    if (!peek) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.indent_to_tag('if');</span>
+<span class="cstat-no" title="statement not covered" >                        this.tag_type = 'HANDLEBARS_ELSE';</span>
+<span class="cstat-no" title="statement not covered" >                        this.indent_content = true;</span>
+<span class="cstat-no" title="statement not covered" >                        this.traverse_whitespace();</span>
+                    }
+                } else <span class="cstat-no" title="statement not covered" >if (this.is_unformatted(tag_check, unformatted) ||</span>
+                    this.is_unformatted(tag_check, content_unformatted)) {
+                    // do not reformat the "unformatted" or "content_unformatted" tags
+<span class="cstat-no" title="statement not covered" >                    comment = this.get_unformatted('&lt;/' + tag_check + '&gt;', tag_complete); </span>//...delegate to get_unformatted function
+<span class="cstat-no" title="statement not covered" >                    content.push(comment);</span>
+<span class="cstat-no" title="statement not covered" >                    tag_end = this.pos - 1;</span>
+<span class="cstat-no" title="statement not covered" >                    this.tag_type = 'SINGLE';</span>
+                } else <span class="cstat-no" title="statement not covered" >if (tag_check === 'script' &amp;&amp;</span>
+                    (tag_complete.search('type') === -1 ||
+                        (tag_complete.search('type') &gt; -1 &amp;&amp;
+                            tag_complete.search(/\b(text|application|dojo)\/(x-)?(javascript|ecmascript|jscript|livescript|(ld\+)?json|method|aspect)/) &gt; -1))) {
+<span class="cstat-no" title="statement not covered" >                    if (!peek) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.record_tag(tag_check);</span>
+<span class="cstat-no" title="statement not covered" >                        this.tag_type = 'SCRIPT';</span>
+                    }
+                } else <span class="cstat-no" title="statement not covered" >if (tag_check === 'style' &amp;&amp;</span>
+                    (tag_complete.search('type') === -1 ||
+                        (tag_complete.search('type') &gt; -1 &amp;&amp; tag_complete.search('text/css') &gt; -1))) {
+<span class="cstat-no" title="statement not covered" >                    if (!peek) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.record_tag(tag_check);</span>
+<span class="cstat-no" title="statement not covered" >                        this.tag_type = 'STYLE';</span>
+                    }
+                } else <span class="cstat-no" title="statement not covered" >if (tag_check.charAt(0) === '!') { //peek for &lt;! comment</span>
+                    // for comments content is already correct.
+<span class="cstat-no" title="statement not covered" >                    if (!peek) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.tag_type = 'SINGLE';</span>
+<span class="cstat-no" title="statement not covered" >                        this.traverse_whitespace();</span>
+                    }
+                } else <span class="cstat-no" title="statement not covered" >if (!peek) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (tag_check.charAt(0) === '/') { //this tag is a double tag so check for tag-ending</span>
+<span class="cstat-no" title="statement not covered" >                        this.retrieve_tag(tag_check.substring(1)); </span>//remove it and all ancestors
+<span class="cstat-no" title="statement not covered" >                        this.tag_type = 'END';</span>
+                    } else { //otherwise it's a start-tag
+<span class="cstat-no" title="statement not covered" >                        this.record_tag(tag_check); </span>//push it on the tag stack
+<span class="cstat-no" title="statement not covered" >                        if (tag_check.toLowerCase() !== 'html') {</span>
+<span class="cstat-no" title="statement not covered" >                            this.indent_content = true;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        this.tag_type = 'START';</span>
+                    }
+&nbsp;
+                    // Allow preserving of newlines after a start or end tag
+<span class="cstat-no" title="statement not covered" >                    if (this.traverse_whitespace()) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.space_or_wrap(content);</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (this.Utils.in_array(tag_check, this.Utils.extra_liners)) { //check if this double needs an extra line</span>
+<span class="cstat-no" title="statement not covered" >                        this.print_newline(false, this.output);</span>
+<span class="cstat-no" title="statement not covered" >                        if (this.output.length &amp;&amp; this.output[this.output.length - 2] !== '\n') {</span>
+<span class="cstat-no" title="statement not covered" >                            this.print_newline(true, this.output);</span>
+                        }
+                    }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (peek) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.pos = orig_pos;</span>
+<span class="cstat-no" title="statement not covered" >                    this.line_char_count = orig_line_char_count;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return content.join(''); </span>//returns fully formatted tag
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.get_comment = <span class="fstat-no" title="function not covered" >function(start_pos) {</span> //function to return comment content in its entirety</span>
+                // this is will have very poor perf, but will work for now.
+<span class="cstat-no" title="statement not covered" >                var comment = '',</span>
+                    delimiter = '&gt;',
+                    matched = false;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.pos = start_pos;</span>
+<span class="cstat-no" title="statement not covered" >                var input_char = this.input.charAt(this.pos);</span>
+<span class="cstat-no" title="statement not covered" >                this.pos++;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                while (this.pos &lt;= this.input.length) {</span>
+<span class="cstat-no" title="statement not covered" >                    comment += input_char;</span>
+&nbsp;
+                    // only need to check for the delimiter if the last chars match
+<span class="cstat-no" title="statement not covered" >                    if (comment.charAt(comment.length - 1) === delimiter.charAt(delimiter.length - 1) &amp;&amp;</span>
+                        comment.indexOf(delimiter) !== -1) {
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    }
+&nbsp;
+                    // only need to search for custom delimiter for the first few characters
+<span class="cstat-no" title="statement not covered" >                    if (!matched &amp;&amp; comment.length &lt; 10) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (comment.indexOf('&lt;![if') === 0) { //peek for &lt;![if conditional comment</span>
+<span class="cstat-no" title="statement not covered" >                            delimiter = '&lt;![endif]&gt;';</span>
+<span class="cstat-no" title="statement not covered" >                            matched = true;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (comment.indexOf('&lt;![cdata[') === 0) { //if it's a &lt;[cdata[ comment...</span>
+<span class="cstat-no" title="statement not covered" >                            delimiter = ']]&gt;';</span>
+<span class="cstat-no" title="statement not covered" >                            matched = true;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (comment.indexOf('&lt;![') === 0) { // some other ![ comment? ...</span>
+<span class="cstat-no" title="statement not covered" >                            delimiter = ']&gt;';</span>
+<span class="cstat-no" title="statement not covered" >                            matched = true;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (comment.indexOf('&lt;!--') === 0) { // &lt;!-- comment ...</span>
+<span class="cstat-no" title="statement not covered" >                            delimiter = '--&gt;';</span>
+<span class="cstat-no" title="statement not covered" >                            matched = true;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (comment.indexOf('{{!--') === 0) { // {{!-- handlebars comment</span>
+<span class="cstat-no" title="statement not covered" >                            delimiter = '--}}';</span>
+<span class="cstat-no" title="statement not covered" >                            matched = true;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (comment.indexOf('{{!') === 0) { // {{! handlebars comment</span>
+<span class="cstat-no" title="statement not covered" >                            if (comment.length === 5 &amp;&amp; comment.indexOf('{{!--') === -1) {</span>
+<span class="cstat-no" title="statement not covered" >                                delimiter = '}}';</span>
+<span class="cstat-no" title="statement not covered" >                                matched = true;</span>
+                            }
+                        } else <span class="cstat-no" title="statement not covered" >if (comment.indexOf('&lt;?') === 0) { // {{! handlebars comment</span>
+<span class="cstat-no" title="statement not covered" >                            delimiter = '?&gt;';</span>
+<span class="cstat-no" title="statement not covered" >                            matched = true;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (comment.indexOf('&lt;%') === 0) { // {{! handlebars comment</span>
+<span class="cstat-no" title="statement not covered" >                            delimiter = '%&gt;';</span>
+<span class="cstat-no" title="statement not covered" >                            matched = true;</span>
+                        }
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    input_char = this.input.charAt(this.pos);</span>
+<span class="cstat-no" title="statement not covered" >                    this.pos++;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return comment;</span>
+            };
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function tokenMatcher(delimiter) {</span>
+<span class="cstat-no" title="statement not covered" >                var token = '';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var add = <span class="fstat-no" title="function not covered" >function(str) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var newToken = token + str.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >                    token = newToken.length &lt;= delimiter.length ? newToken : newToken.substr(newToken.length - delimiter.length, delimiter.length);</span>
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var doesNotMatch = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    return token.indexOf(delimiter) === -1;</span>
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return {</span>
+                    add: add,
+                    doesNotMatch: doesNotMatch
+                };
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.get_unformatted = <span class="fstat-no" title="function not covered" >function(delimiter, orig_tag) {</span> //function to return unformatted content in its entirety</span>
+<span class="cstat-no" title="statement not covered" >                if (orig_tag &amp;&amp; orig_tag.toLowerCase().indexOf(delimiter) !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >                    return '';</span>
+                }
+<span class="cstat-no" title="statement not covered" >                var input_char = '';</span>
+<span class="cstat-no" title="statement not covered" >                var content = '';</span>
+<span class="cstat-no" title="statement not covered" >                var space = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var delimiterMatcher = tokenMatcher(delimiter);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                do {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (this.pos &gt;= this.input.length) {</span>
+<span class="cstat-no" title="statement not covered" >                        return content;</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    input_char = this.input.charAt(this.pos);</span>
+<span class="cstat-no" title="statement not covered" >                    this.pos++;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (this.Utils.in_array(input_char, this.Utils.whitespace)) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (!space) {</span>
+<span class="cstat-no" title="statement not covered" >                            this.line_char_count--;</span>
+<span class="cstat-no" title="statement not covered" >                            continue;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (input_char === '\n' || input_char === '\r') {</span>
+<span class="cstat-no" title="statement not covered" >                            content += '\n';</span>
+                            /*  Don't change tab indention for unformatted blocks.  If using code for html editing, this will greatly affect &lt;pre&gt; tags if they are specified in the 'unformatted array'
+                for (var i=0; i&lt;this.indent_level; i++) {
+                  content += this.indent_string;
+                }
+                space = false; //...and make sure other indentation is erased
+                */
+<span class="cstat-no" title="statement not covered" >                            this.line_char_count = 0;</span>
+<span class="cstat-no" title="statement not covered" >                            continue;</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    content += input_char;</span>
+<span class="cstat-no" title="statement not covered" >                    delimiterMatcher.add(input_char);</span>
+<span class="cstat-no" title="statement not covered" >                    this.line_char_count++;</span>
+<span class="cstat-no" title="statement not covered" >                    space = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (indent_handlebars &amp;&amp; input_char === '{' &amp;&amp; content.length &amp;&amp; content.charAt(content.length - 2) === '{') {</span>
+                        // Handlebars expressions in strings should also be unformatted.
+<span class="cstat-no" title="statement not covered" >                        content += this.get_unformatted('}}');</span>
+                        // Don't consider when stopping for delimiters.
+                    }
+                } while (delimiterMatcher.doesNotMatch());
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return content;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.get_token = <span class="fstat-no" title="function not covered" >function() {</span> //initial handler for token-retrieval</span>
+<span class="cstat-no" title="statement not covered" >                var token;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (this.last_token === 'TK_TAG_SCRIPT' || this.last_token === 'TK_TAG_STYLE') { //check if we need to format javascript</span>
+<span class="cstat-no" title="statement not covered" >                    var type = this.last_token.substr(7);</span>
+<span class="cstat-no" title="statement not covered" >                    token = this.get_contents_to(type);</span>
+<span class="cstat-no" title="statement not covered" >                    if (typeof token !== 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                        return token;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    return [token, 'TK_' + type];</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (this.current_mode === 'CONTENT') {</span>
+<span class="cstat-no" title="statement not covered" >                    token = this.get_content();</span>
+<span class="cstat-no" title="statement not covered" >                    if (typeof token !== 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                        return token;</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        return [token, 'TK_CONTENT'];</span>
+                    }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (this.current_mode === 'TAG') {</span>
+<span class="cstat-no" title="statement not covered" >                    token = this.get_tag();</span>
+<span class="cstat-no" title="statement not covered" >                    if (typeof token !== 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                        return token;</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        var tag_name_type = 'TK_TAG_' + this.tag_type;</span>
+<span class="cstat-no" title="statement not covered" >                        return [token, tag_name_type];</span>
+                    }
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.get_full_indent = <span class="fstat-no" title="function not covered" >function(level) {</span></span>
+<span class="cstat-no" title="statement not covered" >                level = this.indent_level + level || 0;</span>
+<span class="cstat-no" title="statement not covered" >                if (level &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >                    return '';</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return Array(level + 1).join(this.indent_string);</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.is_unformatted = <span class="fstat-no" title="function not covered" >function(tag_check, unformatted) {</span></span>
+                //is this an HTML5 block-level link?
+<span class="cstat-no" title="statement not covered" >                if (!this.Utils.in_array(tag_check, unformatted)) {</span>
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (tag_check.toLowerCase() !== 'a' || !this.Utils.in_array('a', unformatted)) {</span>
+<span class="cstat-no" title="statement not covered" >                    return true;</span>
+                }
+&nbsp;
+                //at this point we have an  tag; is its first child something we want to remain
+                //unformatted?
+<span class="cstat-no" title="statement not covered" >                var next_tag = this.get_tag(true /* peek. */ );</span>
+&nbsp;
+                // test next_tag to see if it is just html tag (no external content)
+<span class="cstat-no" title="statement not covered" >                var tag = (next_tag || "").match(/^\s*&lt;\s*\/?([a-z]*)\s*[^&gt;]*&gt;\s*$/);</span>
+&nbsp;
+                // if next_tag comes back but is not an isolated tag, then
+                // let's treat the 'a' tag as having content
+                // and respect the unformatted option
+<span class="cstat-no" title="statement not covered" >                if (!tag || this.Utils.in_array(tag, unformatted)) {</span>
+<span class="cstat-no" title="statement not covered" >                    return true;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.printer = <span class="fstat-no" title="function not covered" >function(js_source, indent_character, indent_size, wrap_line_length, brace_style) {</span> //handles input/output and some other printing functions</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.input = js_source || ''; </span>//gets the input for the Parser
+&nbsp;
+                // HACK: newline parsing inconsistent. This brute force normalizes the input.
+<span class="cstat-no" title="statement not covered" >                this.input = this.input.replace(/\r\n|[\r\u2028\u2029]/g, '\n');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.output = [];</span>
+<span class="cstat-no" title="statement not covered" >                this.indent_character = indent_character;</span>
+<span class="cstat-no" title="statement not covered" >                this.indent_string = '';</span>
+<span class="cstat-no" title="statement not covered" >                this.indent_size = indent_size;</span>
+<span class="cstat-no" title="statement not covered" >                this.brace_style = brace_style;</span>
+<span class="cstat-no" title="statement not covered" >                this.indent_level = 0;</span>
+<span class="cstat-no" title="statement not covered" >                this.wrap_line_length = wrap_line_length;</span>
+<span class="cstat-no" title="statement not covered" >                this.line_char_count = 0; </span>//count to see if wrap_line_length was exceeded
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                for (var i = 0; i &lt; this.indent_size; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.indent_string += this.indent_character;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.print_newline = <span class="fstat-no" title="function not covered" >function(force, arr) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    this.line_char_count = 0;</span>
+<span class="cstat-no" title="statement not covered" >                    if (!arr || !arr.length) {</span>
+<span class="cstat-no" title="statement not covered" >                        return;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    if (force || (arr[arr.length - 1] !== '\n')) { //we might want the extra line</span>
+<span class="cstat-no" title="statement not covered" >                        if ((arr[arr.length - 1] !== '\n')) {</span>
+<span class="cstat-no" title="statement not covered" >                            arr[arr.length - 1] = rtrim(arr[arr.length - 1]);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        arr.push('\n');</span>
+                    }
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.print_indentation = <span class="fstat-no" title="function not covered" >function(arr) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    for (var i = 0; i &lt; this.indent_level; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                        arr.push(this.indent_string);</span>
+<span class="cstat-no" title="statement not covered" >                        this.line_char_count += this.indent_string.length;</span>
+                    }
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.print_token = <span class="fstat-no" title="function not covered" >function(text) {</span></span>
+                    // Avoid printing initial whitespace.
+<span class="cstat-no" title="statement not covered" >                    if (this.is_whitespace(text) &amp;&amp; !this.output.length) {</span>
+<span class="cstat-no" title="statement not covered" >                        return;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    if (text || text !== '') {</span>
+<span class="cstat-no" title="statement not covered" >                        if (this.output.length &amp;&amp; this.output[this.output.length - 1] === '\n') {</span>
+<span class="cstat-no" title="statement not covered" >                            this.print_indentation(this.output);</span>
+<span class="cstat-no" title="statement not covered" >                            text = ltrim(text);</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    this.print_token_raw(text);</span>
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.print_token_raw = <span class="fstat-no" title="function not covered" >function(text) {</span></span>
+                    // If we are going to print newlines, truncate trailing
+                    // whitespace, as the newlines will represent the space.
+<span class="cstat-no" title="statement not covered" >                    if (this.newlines &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        text = rtrim(text);</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (text &amp;&amp; text !== '') {</span>
+<span class="cstat-no" title="statement not covered" >                        if (text.length &gt; 1 &amp;&amp; text.charAt(text.length - 1) === '\n') {</span>
+                            // unformatted tags can grab newlines as their last character
+<span class="cstat-no" title="statement not covered" >                            this.output.push(text.slice(0, -1));</span>
+<span class="cstat-no" title="statement not covered" >                            this.print_newline(false, this.output);</span>
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            this.output.push(text);</span>
+                        }
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    for (var n = 0; n &lt; this.newlines; n++) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.print_newline(n &gt; 0, this.output);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    this.newlines = 0;</span>
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.indent = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    this.indent_level++;</span>
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.unindent = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (this.indent_level &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        this.indent_level--;</span>
+                    }
+                };
+            };
+<span class="cstat-no" title="statement not covered" >            return this;</span>
+        }
+&nbsp;
+        /*_____________________--------------------_____________________*/
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        multi_parser = new Parser(); </span>//wrapping functions Parser
+<span class="cstat-no" title="statement not covered" >        multi_parser.printer(html_source, indent_character, indent_size, wrap_line_length, brace_style); </span>//initialize starting values
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        while (true) {</span>
+<span class="cstat-no" title="statement not covered" >            var t = multi_parser.get_token();</span>
+<span class="cstat-no" title="statement not covered" >            multi_parser.token_text = t[0];</span>
+<span class="cstat-no" title="statement not covered" >            multi_parser.token_type = t[1];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (multi_parser.token_type === 'TK_EOF') {</span>
+<span class="cstat-no" title="statement not covered" >                break;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            switch (multi_parser.token_type) {</span>
+                case 'TK_TAG_START':
+<span class="cstat-no" title="statement not covered" >                    multi_parser.print_newline(false, multi_parser.output);</span>
+<span class="cstat-no" title="statement not covered" >                    multi_parser.print_token(multi_parser.token_text);</span>
+<span class="cstat-no" title="statement not covered" >                    if (multi_parser.indent_content) {</span>
+<span class="cstat-no" title="statement not covered" >                        if ((multi_parser.indent_body_inner_html || !multi_parser.token_text.match(/&lt;body(?:.*)&gt;/)) &amp;&amp;</span>
+                            (multi_parser.indent_head_inner_html || !multi_parser.token_text.match(/&lt;head(?:.*)&gt;/))) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            multi_parser.indent();</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        multi_parser.indent_content = false;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    multi_parser.current_mode = 'CONTENT';</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 'TK_TAG_STYLE':
+                case 'TK_TAG_SCRIPT':
+<span class="cstat-no" title="statement not covered" >                    multi_parser.print_newline(false, multi_parser.output);</span>
+<span class="cstat-no" title="statement not covered" >                    multi_parser.print_token(multi_parser.token_text);</span>
+<span class="cstat-no" title="statement not covered" >                    multi_parser.current_mode = 'CONTENT';</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 'TK_TAG_END':
+                    //Print new line only if the tag has no content and has child
+<span class="cstat-no" title="statement not covered" >                    if (multi_parser.last_token === 'TK_CONTENT' &amp;&amp; multi_parser.last_text === '') {</span>
+<span class="cstat-no" title="statement not covered" >                        var tag_name = (multi_parser.token_text.match(/\w+/) || [])[0];</span>
+<span class="cstat-no" title="statement not covered" >                        var tag_extracted_from_last_output = null;</span>
+<span class="cstat-no" title="statement not covered" >                        if (multi_parser.output.length) {</span>
+<span class="cstat-no" title="statement not covered" >                            tag_extracted_from_last_output = multi_parser.output[multi_parser.output.length - 1].match(/(?:&lt;|{{#)\s*(\w+)/);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (tag_extracted_from_last_output === null ||</span>
+                            (tag_extracted_from_last_output[1] !== tag_name &amp;&amp; !multi_parser.Utils.in_array(tag_extracted_from_last_output[1], unformatted))) {
+<span class="cstat-no" title="statement not covered" >                            multi_parser.print_newline(false, multi_parser.output);</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    multi_parser.print_token(multi_parser.token_text);</span>
+<span class="cstat-no" title="statement not covered" >                    multi_parser.current_mode = 'CONTENT';</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 'TK_TAG_SINGLE':
+                    // Don't add a newline before elements that should remain unformatted.
+<span class="cstat-no" title="statement not covered" >                    var tag_check = multi_parser.token_text.match(/^\s*&lt;([a-z-]+)/i);</span>
+<span class="cstat-no" title="statement not covered" >                    if (!tag_check || !multi_parser.Utils.in_array(tag_check[1], unformatted)) {</span>
+<span class="cstat-no" title="statement not covered" >                        multi_parser.print_newline(false, multi_parser.output);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    multi_parser.print_token(multi_parser.token_text);</span>
+<span class="cstat-no" title="statement not covered" >                    multi_parser.current_mode = 'CONTENT';</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 'TK_TAG_HANDLEBARS_ELSE':
+                    // Don't add a newline if opening {{#if}} tag is on the current line
+<span class="cstat-no" title="statement not covered" >                    var foundIfOnCurrentLine = false;</span>
+<span class="cstat-no" title="statement not covered" >                    for (var lastCheckedOutput = multi_parser.output.length - 1; lastCheckedOutput &gt;= 0; lastCheckedOutput--) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (multi_parser.output[lastCheckedOutput] === '\n') {</span>
+<span class="cstat-no" title="statement not covered" >                            break;</span>
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            if (multi_parser.output[lastCheckedOutput].match(/{{#if/)) {</span>
+<span class="cstat-no" title="statement not covered" >                                foundIfOnCurrentLine = true;</span>
+<span class="cstat-no" title="statement not covered" >                                break;</span>
+                            }
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    if (!foundIfOnCurrentLine) {</span>
+<span class="cstat-no" title="statement not covered" >                        multi_parser.print_newline(false, multi_parser.output);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    multi_parser.print_token(multi_parser.token_text);</span>
+<span class="cstat-no" title="statement not covered" >                    if (multi_parser.indent_content) {</span>
+<span class="cstat-no" title="statement not covered" >                        multi_parser.indent();</span>
+<span class="cstat-no" title="statement not covered" >                        multi_parser.indent_content = false;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    multi_parser.current_mode = 'CONTENT';</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 'TK_TAG_HANDLEBARS_COMMENT':
+<span class="cstat-no" title="statement not covered" >                    multi_parser.print_token(multi_parser.token_text);</span>
+<span class="cstat-no" title="statement not covered" >                    multi_parser.current_mode = 'TAG';</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 'TK_CONTENT':
+<span class="cstat-no" title="statement not covered" >                    multi_parser.print_token(multi_parser.token_text);</span>
+<span class="cstat-no" title="statement not covered" >                    multi_parser.current_mode = 'TAG';</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                case 'TK_STYLE':
+                case 'TK_SCRIPT':
+<span class="cstat-no" title="statement not covered" >                    if (multi_parser.token_text !== '') {</span>
+<span class="cstat-no" title="statement not covered" >                        multi_parser.print_newline(false, multi_parser.output);</span>
+<span class="cstat-no" title="statement not covered" >                        var text = multi_parser.token_text,</span>
+                            _beautifier,
+                            script_indent_level = 1;
+<span class="cstat-no" title="statement not covered" >                        if (multi_parser.token_type === 'TK_SCRIPT') {</span>
+<span class="cstat-no" title="statement not covered" >                            _beautifier = typeof js_beautify === 'function' &amp;&amp; js_beautify;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (multi_parser.token_type === 'TK_STYLE') {</span>
+<span class="cstat-no" title="statement not covered" >                            _beautifier = typeof css_beautify === 'function' &amp;&amp; css_beautify;</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (options.indent_scripts === "keep") {</span>
+<span class="cstat-no" title="statement not covered" >                            script_indent_level = 0;</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (options.indent_scripts === "separate") {</span>
+<span class="cstat-no" title="statement not covered" >                            script_indent_level = -multi_parser.indent_level;</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        var indentation = multi_parser.get_full_indent(script_indent_level);</span>
+<span class="cstat-no" title="statement not covered" >                        if (_beautifier) {</span>
+&nbsp;
+                            // call the Beautifier if avaliable
+<span class="cstat-no" title="statement not covered" >                            var Child_options = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                                this.eol = '\n';</span>
+                            };
+<span class="cstat-no" title="statement not covered" >                            Child_options.prototype = options;</span>
+<span class="cstat-no" title="statement not covered" >                            var child_options = new Child_options();</span>
+<span class="cstat-no" title="statement not covered" >                            text = _beautifier(text.replace(/^\s*/, indentation), child_options);</span>
+                        } else {
+                            // simply indent the string otherwise
+<span class="cstat-no" title="statement not covered" >                            var white = text.match(/^\s*/)[0];</span>
+<span class="cstat-no" title="statement not covered" >                            var _level = white.match(/[^\n\r]*$/)[0].split(multi_parser.indent_string).length - 1;</span>
+<span class="cstat-no" title="statement not covered" >                            var reindent = multi_parser.get_full_indent(script_indent_level - _level);</span>
+<span class="cstat-no" title="statement not covered" >                            text = text.replace(/^\s*/, indentation)</span>
+                                .replace(/\r\n|\r|\n/g, '\n' + reindent)
+                                .replace(/\s+$/, '');
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (text) {</span>
+<span class="cstat-no" title="statement not covered" >                            multi_parser.print_token_raw(text);</span>
+<span class="cstat-no" title="statement not covered" >                            multi_parser.print_newline(true, multi_parser.output);</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    multi_parser.current_mode = 'TAG';</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                default:
+                    // We should not be getting here but we don't want to drop input on the floor
+                    // Just output the text and move on
+<span class="cstat-no" title="statement not covered" >                    if (multi_parser.token_text !== '') {</span>
+<span class="cstat-no" title="statement not covered" >                        multi_parser.print_token(multi_parser.token_text);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            multi_parser.last_token = multi_parser.token_type;</span>
+<span class="cstat-no" title="statement not covered" >            multi_parser.last_text = multi_parser.token_text;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        var sweet_code = multi_parser.output.join('').replace(/[\r\n\t ]+$/, '');</span>
+&nbsp;
+        // establish end_with_newline
+<span class="cstat-no" title="statement not covered" >        if (end_with_newline) {</span>
+<span class="cstat-no" title="statement not covered" >            sweet_code += '\n';</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (eol !== '\n') {</span>
+<span class="cstat-no" title="statement not covered" >            sweet_code = sweet_code.replace(/[\n]/g, eol);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return sweet_code;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof define === "function" &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >define.amd)</span> {
+        // Add support for AMD ( https://github.com/amdjs/amdjs-api/wiki/AMD#defineamd-property- )
+<span class="cstat-no" title="statement not covered" >        define(["require", "./beautify", "./beautify-css"], <span class="fstat-no" title="function not covered" >function(requireamd) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var js_beautify = requireamd("./beautify");</span>
+<span class="cstat-no" title="statement not covered" >            var css_beautify = requireamd("./beautify-css");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return {</span>
+                html_beautify: <span class="fstat-no" title="function not covered" >function(html_source, options) {</span>
+<span class="cstat-no" title="statement not covered" >                    return style_html(html_source, options, js_beautify.js_beautify, css_beautify.css_beautify);</span>
+                }
+            };
+        });
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof exports !== "undefined") {
+        // Add support for CommonJS. Just put this file somewhere on your require.paths
+        // and you will be able to `var html_beautify = require("beautify").html_beautify`.
+        var js_beautify = require('./beautify.js');
+        var css_beautify = require('./beautify-css.js');
+&nbsp;
+        exports.html_beautify = <span class="fstat-no" title="function not covered" >function(html_source, options) {</span>
+<span class="cstat-no" title="statement not covered" >            return style_html(html_source, options, js_beautify.js_beautify, css_beautify.css_beautify);</span>
+        };
+    } else <span class="cstat-no" title="statement not covered" >if (typeof window !== "undefined") {</span>
+        // If we're running a web page and don't have either of the above, add our one global
+<span class="cstat-no" title="statement not covered" >        window.html_beautify = <span class="fstat-no" title="function not covered" >function(html_source, options) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return style_html(html_source, options, window.js_beautify, window.css_beautify);</span>
+        };
+    } else <span class="cstat-no" title="statement not covered" >if (typeof global !== "undefined") {</span>
+        // If we don't even have window, try global.
+<span class="cstat-no" title="statement not covered" >        global.html_beautify = <span class="fstat-no" title="function not covered" >function(html_source, options) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return style_html(html_source, options, global.js_beautify, global.css_beautify);</span>
+        };
+    }
+&nbsp;
+}());
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 10:16:35 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
