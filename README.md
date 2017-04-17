@@ -1,7 +1,7 @@
 # test coverage for  [js-beautify (v1.6.12)](http://jsbeautifier.org/)  [![npm package](https://img.shields.io/npm/v/npmtest-js-beautify.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-js-beautify) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-js-beautify.svg)](https://travis-ci.org/npmtest/node-npmtest-js-beautify)
 #### jsbeautifier.org for node
 
-[![NPM](https://nodei.co/npm/js-beautify.png?downloads=true)](https://www.npmjs.com/package/js-beautify)
+[![NPM](https://nodei.co/npm/js-beautify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/js-beautify)
 
 | git-branch : | [alpha](https://github.com/npmtest/node-npmtest-js-beautify/tree/alpha)|
 |--:|:--|
@@ -9,11 +9,17 @@
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-js-beautify/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-js-beautify/build/test-report.html)|
 | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-js-beautify/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-js-beautify/tree/gh-pages/build)|
 
-[![istanbul-coverage](https://npmtest.github.io/node-npmtest-js-beautify/build/screenCapture.buildCustomOrg.browser.coverage.html.png)](https://npmtest.github.io/node-npmtest-js-beautify/build/coverage.html/index.html)
+- [https://npmtest.github.io/node-npmtest-js-beautify/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-js-beautify/build/coverage.html/index.html)
 
-[![test-report](https://npmtest.github.io/node-npmtest-js-beautify/build/screenCapture.buildCustomOrg.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmtest%252Fnode-npmtest-js-beautify%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-js-beautify/build/test-report.html)
+[![istanbul-coverage](https://npmtest.github.io/node-npmtest-js-beautify/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fcoverage.lib.html.png)](https://npmtest.github.io/node-npmtest-js-beautify/build/coverage.html/index.html)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-js-beautify/build/screenCapture.buildApidoc.browser.%252Fhome%252Ftravis%252Fbuild%252Fnpmdoc%252Fnode-npmdoc-js-beautify%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-js-beautify/build/apidoc.html)
+- [https://npmtest.github.io/node-npmtest-js-beautify/build/test-report.html](https://npmtest.github.io/node-npmtest-js-beautify/build/test-report.html)
+
+[![test-report](https://npmtest.github.io/node-npmtest-js-beautify/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-js-beautify/build/test-report.html)
+
+- [https://npmdoc.github.io/node-npmdoc-js-beautify/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-js-beautify/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-js-beautify/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-js-beautify/build/apidoc.html)
 
 ![npmPackageListing](https://npmtest.github.io/node-npmtest-js-beautify/build/screenCapture.npmPackageListing.svg)
 
@@ -27,8 +33,7 @@
 
 {
     "author": {
-        "name": "Einar Lielmanis",
-        "email": "einar@jsbeautifier.org"
+        "name": "Einar Lielmanis"
     },
     "bin": {
         "css-beautify": "./js/bin/css-beautify.js",
@@ -40,40 +45,31 @@
     },
     "contributors": [
         {
-            "name": "Vital Batmanov",
-            "email": "vital76@gmail.com"
+            "name": "Vital Batmanov"
         },
         {
-            "name": "Chris J. Shull",
-            "email": "chrisjshull@gmail.com"
+            "name": "Chris J. Shull"
         },
         {
-            "name": "Gian Marco Gherardi",
-            "email": "gianmarco.gherardi@gmail.com"
+            "name": "Gian Marco Gherardi"
         },
         {
-            "name": "Stan",
-            "email": "stasson@orc.ru"
+            "name": "Stan"
         },
         {
-            "name": "Vittorio Gambaletta",
-            "email": "VittGam@vittgam.net"
+            "name": "Vittorio Gambaletta"
         },
         {
-            "name": "Daniel Stockman",
-            "email": "daniel.stockman@gmail.com"
+            "name": "Daniel Stockman"
         },
         {
-            "name": "Harutyun Amirjanyan",
-            "email": "amirjanyan@gmail.com"
+            "name": "Harutyun Amirjanyan"
         },
         {
-            "name": "Nochum Sossonko",
-            "email": "nsossonko@hotmail.com"
+            "name": "Nochum Sossonko"
         },
         {
-            "name": "Liam Newman",
-            "email": "bitwiseman@gmail.com"
+            "name": "Liam Newman"
         }
     ],
     "dependencies": {
@@ -109,17 +105,14 @@
     "main": "js/index.js",
     "maintainers": [
         {
-            "name": "evocateur",
-            "email": "daniel.stockman@gmail.com"
+            "name": "evocateur"
         },
         {
-            "name": "bitwiseman",
-            "email": "bitwiseman@gmail.com"
+            "name": "bitwiseman"
         }
     ],
     "name": "js-beautify",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/beautify-web/js-beautify.git"
