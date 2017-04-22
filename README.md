@@ -1,4 +1,7 @@
-# test coverage for  [js-beautify (v1.6.12)](http://jsbeautifier.org/)  [![npm package](https://img.shields.io/npm/v/npmtest-js-beautify.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-js-beautify) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-js-beautify.svg)](https://travis-ci.org/npmtest/node-npmtest-js-beautify)
+# npmtest-js-beautify
+
+#### basic test coverage for  [js-beautify (v1.6.12)](http://jsbeautifier.org/)  [![npm package](https://img.shields.io/npm/v/npmtest-js-beautify.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-js-beautify) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-js-beautify.svg)](https://travis-ci.org/npmtest/node-npmtest-js-beautify)
+
 #### jsbeautifier.org for node
 
 [![NPM](https://nodei.co/npm/js-beautify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/js-beautify)
